@@ -1,0 +1,21 @@
+body {
+    background: #FFF8E3;
+
+}
+
+.font-color {
+    color: #17153B;
+}
+
+.bg-primary {
+    background: #F5EEE6 !important;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.homeImage {
+    width: 200px;
+}
+
+.getStartedBtn {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}

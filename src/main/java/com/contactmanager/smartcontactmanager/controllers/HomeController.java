@@ -13,7 +13,7 @@ public class HomeController {
     @Autowired
     private UserRepo userRepo;
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/")
     public String base(Model model) {
         model.addAttribute("title", "Home - Contact Manager");
         return "home";
@@ -23,5 +23,17 @@ public class HomeController {
     public String about(Model model) {
         model.addAttribute("title", "About - Contact Manager");
         return "about";
+    }
+
+    @RequestMapping(value = "/signuppage")
+    public String signup(Model model) {
+        model.addAttribute("title", "Signup - Contact Manager");
+        return "signuppage";
+    }
+
+    @RequestMapping(value = "/loginpage")
+    public String login(Model model) {
+        model.addAttribute("title", "Login - Contact Manager");
+        return "loginpage";
     }
 }
