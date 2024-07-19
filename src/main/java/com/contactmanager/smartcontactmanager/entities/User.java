@@ -12,6 +12,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
@@ -21,12 +25,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotBlank(message = "Name can not be blank")
+    @Size(min = 5, max = 20, message = "Name must be of length 5 - 20")
     private String name;
 
     @Column(unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", message = "Invalid email")
     private String email;
 
+    @Size(min = 8, message = "password must be equal or greater then 8 digits")
     private String password;
+
+    @AssertTrue
+    private boolean agree;
 
     private String role;
 
@@ -127,11 +138,30 @@ public class User {
         this.contacts = contacts;
     }
 
+    public boolean isAgree() {
+        return agree;
+    }
+
+    public void setAgree(boolean agree) {
+        this.agree = agree;
+    }
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-                + ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
-                + "]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("User{");
+        sb.append("id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", email=").append(email);
+        sb.append(", password=").append(password);
+        sb.append(", agree=").append(agree);
+        sb.append(", role=").append(role);
+        sb.append(", enabled=").append(enabled);
+        sb.append(", imageUrl=").append(imageUrl);
+        sb.append(", about=").append(about);
+        sb.append(", contacts=").append(contacts);
+        sb.append('}');
+        return sb.toString();
     }
 
 }
